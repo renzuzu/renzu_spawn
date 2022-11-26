@@ -1,4 +1,6 @@
 Config = {}
+
+Config.Multicharacters = true -- if false. this resource will trigger everytime you spawned in the firsttime
 -- @name image name
 -- @ label = Label text
 -- @ coord = coordinates of spawn location

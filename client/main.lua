@@ -23,11 +23,6 @@ exports('Selector', function(coord)
 	return Citizen.Await(wait)
 end)
 
-RegisterCommand('spawn', function()
-	local coord = GetEntityCoords(PlayerPedId())
-	exports.renzu_spawn:Selector({x = coord.x, y = coord.y, z = coord.z, heading = 0.0})
-end)
-
 preview = function(name)
 	local spawns = Config.Spawns
 	for i = 1 , #spawns do
@@ -87,5 +82,11 @@ RegisterNUICallback('nuicb', function(data)
 	end
 	if data.msg == 'spawn' then
 		spawn(data.name)
+	end
+end)
+
+RegisterNetEvent('playerSpawned', function()
+	if not Config.Multicharacters then
+		exports.renzu_spawn:Selector()
 	end
 end)
