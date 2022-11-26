@@ -14,6 +14,7 @@ https://github.com/renzuzu/renzu_spawn
 * Smooth Camera Transition
 * Standalone resource
 * Supports non multicharacters too. by editing Config.multicharacters = false
+* Supports Custom location like personal property, job locations.
 
 # ℹ️ How to use
 - this resource can be exported from your eg. multicharacters resource.
@@ -28,7 +29,12 @@ exports.renzu_spawn:Selector(lastlocation)
 ```
 local lastlocation = {x = coord.x, y = coord.y, z = coord.z, heading = coord.w}
 local options = {
-  [1] = { name = 'house', label = 'Personal Property', coord = vector4(146.86, -267.63, 43.28, 142.27), info = 'My Personal property in grove street.'},
+  [1] = { 
+             name = 'house',  -- img name
+             label = 'Personal Property', 
+             coord = vector4(146.86, -267.63, 43.28, 142.27), 
+             info = 'My Personal property in grove street.'
+   },
 }
 exports.renzu_spawn:Selector(lastlocation,options)
 ```
