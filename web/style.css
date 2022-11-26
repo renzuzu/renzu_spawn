@@ -1,0 +1,118 @@
+html,
+body {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(rgb(194 201 216 / 0%), rgb(98 133 207 / 0%));
+}
+
+.spawn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 100%; */
+    position: absolute;
+    bottom: 0;
+    left: auto;
+    width: 100vw;
+}
+
+.spawn-container {
+    display: flex;
+    align-items: center;
+    min-height: 475px;
+    width: 70%;
+    min-width: 280px;
+    background-color: #3d3f4200;
+    box-shadow: inset 0px 0px 35px transparent;
+    overflow: hidden;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    max-width: 250px;
+    min-width: 250px;
+    margin: 0px 50px;
+    background: #20262c;
+    box-shadow: 0px 0px 25px #a7aaaf;
+    transition: transform 0.2s;
+    border-radius: 5px;
+}
+
+.card-img{
+    background: rgb(27 28 28);
+    min-height: 140px;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.card-title{
+  padding: 0px 0px 0px 20px;
+  margin-bottom: -20px;
+  color: aliceblue;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: small;
+}
+
+.card-text{
+    padding: 0px 20px 0px 20px;
+    color: #a2a6ab;
+    font-style: oblique;
+    font-size: smaller;
+}
+
+.card-btn{
+    border: none;
+    color: white;
+    text-align: center;
+    background-color: rgb(23 27 30);
+    margin:
+    auto 20px 20px 20px;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.card-mover-btn{
+    position: absolute;
+}
+
+.prev-cont{
+    margin-right: 73.7%
+}
+
+.next-cont{
+    margin-left: 73.7%;
+}
+
+.btn{
+    font-size: 50px;
+    color: white;
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: rgba(101, 101, 101, 0.722);
+}
+
+#lastloccontainer {
+    position: absolute;
+    top: 5%;
+    left: 2%;
+}
+
+#lastloc {
+    padding: 20px;
+    width: 200px;
+    font-size: medium;
+    font-weight: bolder;
+    text-transform: uppercase;
+    border-radius: 7px;
+    box-shadow: 0px 0px 15px #a7aaaf;
+}
