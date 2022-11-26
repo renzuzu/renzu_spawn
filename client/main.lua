@@ -2,7 +2,11 @@ local cam = nil
 local lastloc = {}
 local wait = nil
 -- @ coord = {x = 50.0, y = 125.1, z = 50.0, heading = 2.0} - x,y,z, headings (for last locations)
-exports('Selector', function(coord)
+-- with options
+-- options = {
+-- 	[1] = { name = 'house', label = 'Personal Property', coord = vector4(146.86, -267.63, 43.28, 142.27), info = 'My Personal property in grove street.'},
+--}
+exports('Selector', function(coord,options)
 	wait = promise.new()
 	DoScreenFadeOut(1)
 	Wait(1000)
@@ -19,7 +23,13 @@ exports('Selector', function(coord)
 	SetCamActive(cam, true)
 	RenderScriptCams(true, false, 1, true, true)
 	SetNuiFocus(true,true)
-	SendNUIMessage({spawns = Config.Spawns})
+	local spawns = Config.Spawns
+	if options then
+		for k,v in pairs(options) do
+			table.insert(spawns,v)
+		end
+	end
+	SendNUIMessage({spawns = spawns})
 	return Citizen.Await(wait)
 end)
 
