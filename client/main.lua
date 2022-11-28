@@ -8,10 +8,6 @@ local wait = nil
 --}
 exports('Selector', function(coord,options)
 	wait = promise.new()
-	DoScreenFadeOut(1)
-	Wait(1000)
-	DoScreenFadeIn(1)
-
 	if coord then
 		lastloc = vec4(coord.x,coord.y,coord.z,coord.heading or 0.0)
 	else
