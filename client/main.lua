@@ -82,13 +82,14 @@ PlayerSpawn = function(coord)
 end
 
 -- NUI CALLBACKS
-RegisterNUICallback('nuicb', function(data)
+RegisterNUICallback('nuicb', function(data,cb)
 	if data.msg == 'preview' then
 		preview(data.name)
 	end
 	if data.msg == 'spawn' then
 		spawn(data.name)
 	end
+	cb('nice')
 end)
 
 RegisterNetEvent('playerSpawned', function()

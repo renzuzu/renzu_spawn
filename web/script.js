@@ -39,61 +39,36 @@ window.addEventListener('message', function (table) {
         </div>`
         getEl('spawn').insertAdjacentHTML("beforeend", ui)
         }
-        containerHeightValue = document.querySelector('.spawn-container').offsetHeight;
-        //containerChildValue = document.querySelector('.spawn-container').childElementCount;
         containerChildValue = document.querySelectorAll('.card');
         cardWidth = document.querySelector('.card').offsetWidth;
-            //Places buttons on load.
-            window.addEventListener('load', () => {
-            screenStyles();
-
-        });
-
-
-        //Adjusts buttons on window resize.
-        window.addEventListener('resize', (event) => {
-            screenStyles();
-
-        });
     }
 })
-
-function spawn(name) {
-    SendData({msg : 'spawn', name : name})
-}
-
-function preview(name) {
-    console.log('aso')
-    SendData({msg : 'preview', name : name})
-}
 
 //Select elements and getting measurements for button placements.
 const prev = document.querySelector('.prev');
 const next = document.querySelector('.next');
-const prevPos = document.querySelector('.prev-cont');
-const nextPos = document.querySelector('.next-cont');
-
-const prevWidth = prev.offsetWidth;
-const nextWidth = next.offsetWidth;
-const prevHeight = next.offsetHeight;
-const nextHeight = next.offsetHeight;
 let cardWidth = ''
-let containerHeightValue = ''
 let containerChildValue = ''
-
-
-//adjust button styles based on screen size.
-const screenStyles = function () {
-    const containerWidthValue = document.querySelector('.spawn-container').offsetWidth;
- 
-}
 
 let count = 0;
 
 let tracker = 0;
 
-//Action for Next button
-const moveCardsLeft = function () {
+function spawn(name) {
+    tracker = 0
+    count = 0
+    blockWidth = 0
+    containerChildValue = ''
+    prev.removeAttribute('disabled');
+    next.removeAttribute('disabled');
+    SendData({msg : 'spawn', name : name})
+}
+
+function preview(name) {
+    SendData({msg : 'preview', name : name})
+}
+
+const toLeft = function () {
     count = count - (cardWidth-75);
     tracker++;
     if (tracker === 0) {
@@ -107,15 +82,13 @@ const moveCardsLeft = function () {
         next.removeAttribute('disabled');
     }
 
-    //Pushes cards based on count. 
     const cards = document.querySelectorAll('.card');
     cards.forEach(function (el, i, arr) {
         el.style.transform = `translateX(${count}px)`;
     });
 }
 
-//Action for Prev button
-const moveCardsRight = function () {
+const toRight = function () {
     count = count + (cardWidth - 75) ;
     tracker--;
     if (tracker <= 0) {
@@ -136,9 +109,9 @@ const moveCardsRight = function () {
 
 //Event listeners to slide the cards.
 prev.addEventListener('click', () => {
-    moveCardsRight();
+    toRight();
 });
 
 next.addEventListener('click', () => {
-    moveCardsLeft();
+    toLeft();
 });
