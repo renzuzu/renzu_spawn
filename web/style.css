@@ -36,8 +36,8 @@ body {
     display: flex;
     flex-direction: column;
     height: 31vh;
-    max-width: 15vw;
-    min-width: 14vw;
+    max-width: 24vh;
+    min-width: 24vh;
     margin: 0px 2vw;
     background: #20262c;
     box-shadow: 0px 0px 25px #a7aaaf;
@@ -58,7 +58,7 @@ body {
   color: aliceblue;
   text-transform: uppercase;
   font-weight: bolder;
-  font-size: 0.68vw;
+  font-size: 1.28vh;
   text-align: center;
 }
 
@@ -66,7 +66,7 @@ body {
     padding: 0px 20px 0px 20px;
     color: #a2a6ab;
     font-style: oblique;
-    font-size: 0.7vw;
+    font-size: 1.3vh;
     text-align: -webkit-center;
 }
 
