@@ -17,13 +17,15 @@ body {
     bottom: 0;
     left: auto;
     width: 100vw;
+    overflow: hidden;
+    right: auto;
 }
 
 .spawn-container {
     display: flex;
     align-items: center;
     min-height: 475px;
-    width: 70%;
+    width: 90vw;
     min-width: 280px;
     background-color: #3d3f4200;
     box-shadow: inset 0px 0px 35px transparent;
@@ -33,37 +35,39 @@ body {
 .card {
     display: flex;
     flex-direction: column;
-    height: 350px;
-    max-width: 250px;
-    min-width: 250px;
-    margin: 0px 50px;
+    height: 31vh;
+    max-width: 15vw;
+    min-width: 14vw;
+    margin: 0px 2vw;
     background: #20262c;
     box-shadow: 0px 0px 25px #a7aaaf;
     transition: transform 0.2s;
-    border-radius: 5px;
+    border-radius: 11px;
 }
 
 .card-img{
     background: rgb(27 28 28);
-    min-height: 140px;
+    min-height: 12.5vh;
     background-size: cover;
     cursor: pointer;
 }
 
 .card-title{
-  padding: 0px 0px 0px 20px;
+  padding: 0px 0px 0px 0px;
   margin-bottom: -20px;
   color: aliceblue;
   text-transform: uppercase;
   font-weight: bolder;
-  font-size: small;
+  font-size: 0.68vw;
+  text-align: center;
 }
 
 .card-text{
     padding: 0px 20px 0px 20px;
     color: #a2a6ab;
     font-style: oblique;
-    font-size: smaller;
+    font-size: 0.7vw;
+    text-align: -webkit-center;
 }
 
 .card-btn{
@@ -75,6 +79,8 @@ body {
     auto 20px 20px 20px;
     padding: 15px;
     cursor: pointer;
+    -webkit-text-stroke: thin;
+    text-transform: uppercase;
 }
 
 .card-mover-btn{
@@ -82,11 +88,11 @@ body {
 }
 
 .prev-cont{
-    margin-right: 73.7%
+    margin-right: 91.7%;
 }
 
 .next-cont{
-    margin-left: 73.7%;
+    margin-left: 88.7%;
 }
 
 .btn{
@@ -104,7 +110,7 @@ body {
 #lastloccontainer {
     position: absolute;
     top: 5%;
-    left: 2%;
+    right: 2%;
 }
 
 #lastloc {

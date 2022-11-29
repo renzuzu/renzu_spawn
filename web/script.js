@@ -40,7 +40,8 @@ window.addEventListener('message', function (table) {
         getEl('spawn').insertAdjacentHTML("beforeend", ui)
         }
         containerHeightValue = document.querySelector('.spawn-container').offsetHeight;
-        containerChildValue = document.querySelector('.spawn-container').childElementCount;
+        //containerChildValue = document.querySelector('.spawn-container').childElementCount;
+        containerChildValue = document.querySelectorAll('.card');
         cardWidth = document.querySelector('.card').offsetWidth;
             //Places buttons on load.
             window.addEventListener('load', () => {
@@ -84,28 +85,7 @@ let containerChildValue = ''
 //adjust button styles based on screen size.
 const screenStyles = function () {
     const containerWidthValue = document.querySelector('.spawn-container').offsetWidth;
-
-    if (containerWidthValue >= 400) {
-        prevPos.style.marginRight = `${containerWidthValue + prevWidth + 8}px`;
-        nextPos.style.marginLeft = `${containerWidthValue + nextWidth + 8}px`;
-
-        prevPos.style.marginTop = `0px`;
-        nextPos.style.marginTop = `0px`;
-
-        prev.style.padding = `100px 10px 100px 10px`;
-        next.style.padding = `100px 10px 100px 10px`;
-
-    } else {
-        prevPos.style.marginRight = `${prevWidth + 100}px`;
-        nextPos.style.marginLeft = `${nextWidth + 100}px`;
-
-        prevPos.style.marginTop = `${containerHeightValue + prevHeight - 2}px`;
-        nextPos.style.marginTop = `${containerHeightValue + nextHeight - 2}px`;
-
-        prev.style.padding = `0px 30px 0px 30px`;
-        next.style.padding = `0px 30px 0px 30px`;
-
-    }
+ 
 }
 
 let count = 0;
@@ -114,14 +94,14 @@ let tracker = 0;
 
 //Action for Next button
 const moveCardsLeft = function () {
-    count = count - cardWidth - 100;
+    count = count - (cardWidth-75);
     tracker++;
     if (tracker === 0) {
         prev.setAttribute('disabled', '');
     } else {
         prev.removeAttribute('disabled');
     }
-    if (tracker === containerChildValue - 1) {
+    if (tracker === containerChildValue.length - 1) {
         next.setAttribute('disabled', '');
     } else {
         next.removeAttribute('disabled');
@@ -136,14 +116,14 @@ const moveCardsLeft = function () {
 
 //Action for Prev button
 const moveCardsRight = function () {
-    count = count + cardWidth + 100;
+    count = count + (cardWidth - 75) ;
     tracker--;
     if (tracker <= 0) {
         prev.setAttribute('disabled', '');
     } else {
         prev.removeAttribute('disabled');
     }
-    if (tracker === containerChildValue - 1) {
+    if (tracker === containerChildValue.length - 2) {
         next.setAttribute('disabled', '');
     } else {
         next.removeAttribute('disabled');
