@@ -6,6 +6,57 @@ local wait = nil
 -- options = {
 -- 	[1] = { name = 'house', label = 'Personal Property', coord = vector4(146.86, -267.63, 43.28, 142.27), info = 'My Personal property in grove street.'},
 --}
+
+--------------------------------------------------------------------------------------------------------------------
+-- ADDED FOR CLEARING CUSTOM SPAWN LOCATIONS -----------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+function deepcopy(orig, copies)
+    copies = copies or {}
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        if copies[orig] then
+            copy = copies[orig]
+        else
+            copy = {}
+            copies[orig] = copy
+            for orig_key, orig_value in next, orig, nil do
+                copy[deepcopy(orig_key, copies)] = deepcopy(orig_value, copies)
+            end
+            setmetatable(copy, deepcopy(getmetatable(orig), copies))
+        end
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
+end
+
+local defaultSpawns = deepcopy(Config.Spawns)
+local spawns = defaultSpawns
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------
+-- QBCORE EVENT ----------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+	defaultSpawns = deepcopy(Config.Spawns)
+	spawns = defaultSpawns
+end)
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------
+-- ESX EVENT -------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded', function()
+	defaultSpawns = deepcopy(Config.Spawns)
+	spawns = defaultSpawns
+end)
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+
 exports('Selector', function(coord,options)
 	wait = promise.new()
 	if coord then
@@ -18,8 +69,7 @@ exports('Selector', function(coord,options)
 	cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", PlayerData.x, PlayerData.y, PlayerData.z + 800.0, -85.00, 0.00, 0.00, 100.00, false, 0)
 	SetCamActive(cam, true)
 	RenderScriptCams(true, false, 1, true, true)
-	SetNuiFocus(true,true)
-	local spawns = Config.Spawns
+	SetNuiFocus(true,true)	
 	if options then
 		for k,v in pairs(options) do
 			table.insert(spawns,v)
@@ -29,8 +79,7 @@ exports('Selector', function(coord,options)
 	return Citizen.Await(wait)
 end)
 
-preview = function(name)
-	local spawns = Config.Spawns
+preview = function(name)	
 	for i = 1 , #spawns do
 		if spawns[i].name == name then
 			SetCamParams(cam, spawns[i].coord.x, spawns[i].coord.y, spawns[i].coord.z + 800.0, -85.00, 0.00, 0.00, 100.00, 1000, 0, 0, 2)
@@ -46,8 +95,7 @@ spawn = function(name)
 	if name == 'lastloc' then
 		SetCamParams(cam, lastloc.x, lastloc.y, lastloc.z + 800.0, -85.00, 0.00, 0.00, 100.00, 1, 0, 0, 2)
 		PlayerSpawn(lastloc)
-	end
-	local spawns = Config.Spawns
+	end	
 	for i = 1 , #spawns do
 		if spawns[i].name == name then
 			PlayerSpawn(spawns[i].coord)
