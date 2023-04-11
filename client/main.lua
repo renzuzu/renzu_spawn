@@ -59,6 +59,7 @@ end)
 
 exports('Selector', function(coord,options)
 	Wait(500)
+	if LocalPlayer.state.inshell then return end
 	if LocalPlayer.state?.isdead or LocalPlayer.state?.isDead or LocalPlayer.state?.dead or IsPlayerDead(PlayerId()) then return end
 	wait = promise.new()
 	if coord then
@@ -137,6 +138,17 @@ PlayerSpawn = function(coord)
 		SetCamActive(cam, false)
 	end
 end
+
+CloseSelector = function()
+	SendNUIMessage({close = true})
+	SetNuiFocus(false,false)
+	FreezeEntityPosition(ped, false)
+	if DoesCamExist(cam) then
+		SetCamActive(cam, false)
+	end
+end
+
+exports('CloseSelector', CloseSelector)
 
 -- NUI CALLBACKS
 RegisterNUICallback('nuicb', function(data,cb)
