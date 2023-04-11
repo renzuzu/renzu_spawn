@@ -58,6 +58,8 @@ end)
 --------------------------------------------------------------------------------------------------------------------
 
 exports('Selector', function(coord,options)
+	Wait(500)
+	if LocalPlayer.state?.isdead or LocalPlayer.state?.isDead or LocalPlayer.state?.dead or IsPlayerDead(PlayerId()) then return end
 	wait = promise.new()
 	if coord then
 		lastloc = vec4(coord.x,coord.y,coord.z,coord.heading or 0.0)
@@ -92,6 +94,13 @@ preview = function(name)
 end
 
 spawn = function(name)
+	if LocalPlayer.state?.isdead and lastloc
+	or LocalPlayer.state?.isDead and lastloc
+	or LocalPlayer.state?.dead and lastloc
+	or IsPlayerDead(PlayerId()) and lastloc then 
+		SetCamParams(cam, lastloc.x, lastloc.y, lastloc.z + 800.0, -85.00, 0.00, 0.00, 100.00, 1, 0, 0, 2)
+		PlayerSpawn(lastloc)
+	end
 	if name == 'lastloc' then
 		SetCamParams(cam, lastloc.x, lastloc.y, lastloc.z + 800.0, -85.00, 0.00, 0.00, 100.00, 1, 0, 0, 2)
 		PlayerSpawn(lastloc)
